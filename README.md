@@ -14,7 +14,7 @@ Pre upotrebe alata potrebno je instalirati:
 ### Upotreba alata
 
 Pokrenuti komandu 
-<pre> git clone https://github.com/MATF-Software-Verification/05_redudantni_testovi.git </pre>
+<pre> git clone https://github.com/MATF-Software-Verification/05_error_fixing_tool.git </pre>
 
 Pozicionirati se u folderu gde se nalazi glavni fajl <i>koronka.py</i>, kao i pomocni fajlovi u okviru foldera <i>utils</i>.
 
