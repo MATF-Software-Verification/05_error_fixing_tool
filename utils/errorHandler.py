@@ -4,20 +4,30 @@ from uninitialisedFix import *
 from invalidFreeFix import *
 import re
 from invalidReadOrWriteFix import *
+from noFreeFix import *
+from negativeAllocFix import *
 
 errorType = [
 	'Conditional jump or move depends on uninitialised value(s)',
 	'Use of uninitialised value of size ',
 	'Invalid free() / delete / delete[] / realloc()',
 	'Invalid read of size ',
-	'Invalid write of size '
+	'Invalid write of size ',
+	'definitely lost',
+	'Argument \'size\''
+	
 ]
 
 errorReason = [
 	'Uninitialised value was created by a stack allocation',
 	'Uninitialised value was created by a heap allocation',
-	' bytes after a block of size '
+	' bytes after a block of size ',
 
+	' bytes before a block of size ',
+	
+	' blocks are definitely lost in loss record ',
+	' function malloc has a fishy (possibly negative) value',
+	' function realloc has a fishy (possibly negative) value'
 ]
 
 # function which will check if Valgrinds output error can be handled and fixed by koronka
@@ -39,6 +49,10 @@ def isKnownReason(newReason):
 
 def eliminateError(errorInfo, filename, history):
 	report = open("ExecutionReport.txt",'a')
+	report.write('#####  Based on Valgrind output:  #####\n\n')
+	report.write(errorInfo)	
+	
+	report.write('\n#####  Koronka made following changes in ' + filename + '  #####\n\n')
 
 	# define error and decide what to do to fix it 	
 	err = ErrorInfo(errorInfo[0:errorInfo.find('\n')], errorInfo, filename)
@@ -46,23 +60,17 @@ def eliminateError(errorInfo, filename, history):
 	
 	fix(err, history)
 
-	if err.getBug():
-		report.write('#####  Based on Valgrind output:  #####\n\n')
-		report.write(errorInfo)	
-		report.write('\n#####  Koronka made following changes in ' + filename + '  #####\n\n')
-
 	if err.getBug() and err.getBugFix():
 		# change in file what shoud be changed
 		f = open(filename,'r')
-		data = f.readlines()
+		filedata = f.read()
 		f.close()
 
 		# change bug in code found by koronka
-		data[err.getChangedLine() -1] = err.getBugFix()
-
+		newdata = filedata.replace(err.getBug() , err.getBugFix())
+		
 		f = open(filename,'w')
-		for line in data:
-			f.write(line)
+		f.write(newdata)
 		f.close()
 
 	if err.getBug() and err.getBugFix():
@@ -117,4 +125,20 @@ def fix(err, history):
 		invalidReadOrWriteFix(err, history)
 
 
+	#invalid read or write (left side)
+	if err.getErrorType().find( 'Invalid read of size')>=0 and err.isKnownReason(' bytes before a block of size '):
+		invalidReadOrWriteFix(err, history)
+
+	if err.getErrorType().find( 'Invalid write of size')>=0 and err.isKnownReason(' bytes before a block of size '):
+		invalidReadOrWriteFix(err, history)
+
+    	#No free
+	if err.getErrorType().find('definitely lost')>=0 and err.isKnownReason(' blocks are definitely lost in loss record '):
+		noFreeFix(err, history)
+	#Negative malloc
+	if err.getErrorType().find('Argument \'size\'')>=0 and err.isKnownReason(' function malloc has a fishy (possibly negative) value'):
+		negativeAllocFix(err, history)
+	#Negativan realloc
+	if err.getErrorType().find('Argument \'size\'')>=0 and err.isKnownReason(' function realloc has a fishy (possibly negative) value'):
+		negativeAllocFix(err, history)
 

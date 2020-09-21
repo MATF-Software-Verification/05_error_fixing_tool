@@ -1,0 +1,40 @@
+#####  Based on Valgrind output:  #####
+
+Argument 'size' of function malloc has a fishy (possibly negative) value: -10
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x10869D: main (11.c:8)
+
+#####  Koronka made following changes in 11.c  #####
+
+#####  Based on Valgrind output:  #####
+
+Argument 'size' of function malloc has a fishy (possibly negative) value: -60
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086AB: main (11.c:10)
+
+#####  Koronka made following changes in 11.c  #####
+
+#####  Based on Valgrind output:  #####
+
+Argument 'size' of function realloc has a fishy (possibly negative) value: -50
+at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086C0: main (11.c:12)
+
+#####  Koronka made following changes in 11.c  #####
+
+#####  Based on Valgrind output:  #####
+
+50 bytes in 1 blocks are definitely lost in loss record 1 of 2
+at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086BE: main (11.c:12)
+
+#####  Koronka made following changes in 11.c  #####
+
+#####  Based on Valgrind output:  #####
+
+60 bytes in 1 blocks are definitely lost in loss record 1 of 1
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F9: main (11.c:10)
+
+#####  Koronka made following changes in 11.c  #####
+

@@ -8,10 +8,10 @@ int main()
   p = (char *) malloc(19);
   p = (char *) realloc(p, 12);
   free(p);
-  free(p);
+
 
   p = &q;
-  free(p); 			
+
   				
   return 0;
 }

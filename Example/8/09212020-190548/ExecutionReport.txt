@@ -1,0 +1,86 @@
+#####  Based on Valgrind output:  #####
+
+Invalid write of size 4
+at 0x1086FF: main (8.c:8)
+Address 0x522d03c is 4 bytes before a block of size 16 alloc'd
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F2: main (8.c:7)
+
+#####  Koronka made following changes in 8.c  #####
+
+Changed 7. line 
+	t[-1] = 15;
+ with 
+	t[5] = 15;
+
+
+#####  Based on Valgrind output:  #####
+
+Invalid write of size 4
+at 0x1086FF: main (8.c:8)
+Address 0x522d054 is 4 bytes after a block of size 16 alloc'd
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F2: main (8.c:7)
+
+#####  Koronka made following changes in 8.c  #####
+
+Changed 7. line 
+	int *t = malloc ( sizeof( int )*4) ;
+ with 
+	int *t = malloc ( sizeof(int)*6 );
+
+
+#####  Based on Valgrind output:  #####
+
+Invalid read of size 4
+at 0x10870D: main (8.c:9)
+Address 0x522d038 is 8 bytes before a block of size 24 alloc'd
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F2: main (8.c:7)
+
+#####  Koronka made following changes in 8.c  #####
+
+Changed 7. line 
+	printf("x = %d, t = %d\n",x, t[-2]);
+ with 
+	printf("x = %d, t = %d\n",x, t[7]);
+
+
+#####  Based on Valgrind output:  #####
+
+Invalid read of size 4
+at 0x10870D: main (8.c:9)
+Address 0x522d05c is 4 bytes after a block of size 24 alloc'd
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F2: main (8.c:7)
+
+#####  Koronka made following changes in 8.c  #####
+
+Changed 7. line 
+	int *t = malloc ( sizeof(int)*6 );
+ with 
+	int *t = malloc ( sizeof(int)*8 );
+
+
+#####  Based on Valgrind output:  #####
+
+Conditional jump or move depends on uninitialised value(s)
+at 0x4E9896A: vfprintf (vfprintf.c:1642)
+by 0x4EA0FA5: printf (printf.c:33)
+by 0x108724: main (8.c:9)
+Uninitialised value was created by a heap allocation
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086F2: main (8.c:7)
+
+#####  Koronka made following changes in 8.c  #####
+
+Changed 7. line 
+	int *t = malloc ( sizeof(int)*8 );
+ with 
+	int *t = malloc ( sizeof(int)*8 );
+	int __index__;
+	for( __index__ = 0; __index__ < 8; __index__ ++)
+		t[__index__] = 0;
+
+
+

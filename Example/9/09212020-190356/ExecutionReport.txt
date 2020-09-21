@@ -1,0 +1,34 @@
+#####  Based on Valgrind output:  #####
+
+Conditional jump or move depends on uninitialised value(s)
+at 0x4E97AD1: vfprintf (vfprintf.c:1643)
+by 0x4EA0FA5: printf (printf.c:33)
+by 0x108669: main (9.c:8)
+Uninitialised value was created by a stack allocation
+at 0x10864A: main (9.c:5)
+
+#####  Koronka made following changes in 9.c  #####
+
+Changed 6. line 
+	int*  x;
+ with 
+	int*  x= NULL;
+
+
+#####  Based on Valgrind output:  #####
+
+Conditional jump or move depends on uninitialised value(s)
+at 0x4E97AD1: vfprintf (vfprintf.c:1643)
+by 0x4EA0FA5: printf (printf.c:33)
+by 0x108689: main (9.c:10)
+Uninitialised value was created by a stack allocation
+at 0x10864A: main (9.c:5)
+
+#####  Koronka made following changes in 9.c  #####
+
+Changed 7. line 
+	char* y;
+ with 
+	char* y= NULL;
+
+

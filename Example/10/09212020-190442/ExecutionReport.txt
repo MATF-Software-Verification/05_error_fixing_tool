@@ -1,0 +1,16 @@
+#####  Based on Valgrind output:  #####
+
+12 bytes in 1 blocks are definitely lost in loss record 1 of 2
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x1086A9: main (10.c:10)
+
+#####  Koronka made following changes in 10.c  #####
+
+#####  Based on Valgrind output:  #####
+
+50 bytes in 1 blocks are definitely lost in loss record 1 of 1
+at 0x4C31D2F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x10870E: main (10.c:12)
+
+#####  Koronka made following changes in 10.c  #####
+

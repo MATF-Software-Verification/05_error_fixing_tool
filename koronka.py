@@ -23,7 +23,7 @@ def doJob(filename, clArguments):
 	print("################ RUN STARTED ###################\n")	
 	executeFile = compileProgram(filename)
 	# calling Valgrind tool MEMCHECK
-	call(["valgrind", "--tool=memcheck", "--track-origins=yes", "--log-file=ValgrindLOG.txt" , "./" + executeFile, clArguments])
+	call(["valgrind", "--tool=memcheck", "--track-origins=yes", "--leak-check=full", "--log-file=ValgrindLOG.txt" , "./" + executeFile, clArguments])
 	errorInfo = parseOutput()
 	# contain changes made to file, in order not to make same changes if they have allready made
 	history = ['']
@@ -42,7 +42,7 @@ def doJob(filename, clArguments):
 		if len(history) > n:	
 			print("################ RUN STARTED ###################\n")				
 			executeFile = compileProgram(filename)
-			call(["valgrind", "--tool=memcheck", "--track-origins=yes", "--log-file=ValgrindLOG.txt" ,\
+			call(["valgrind", "--tool=memcheck", "--track-origins=yes", "--log-file=ValgrindLOG.txt", "--leak-check=full" ,\
 			 "./" + executeFile, clArguments])
 			errorInfo = parseOutput()
 		else:
