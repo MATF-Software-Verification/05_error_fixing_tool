@@ -77,6 +77,8 @@ def eliminateError(errorInfo, filename, history):
 		report.write('Changed ' + str(err.getChangedLine()) + '. line \n' + err.getBug() + ' with \n' + err.getBugFix() + '\n\n')
 	elif err.getBug():
 		report.write('Removed ' + str(err.getChangedLine()) + '. line\n' + err.getBug() + '\n\n')
+	elif err.getBugFix():
+		report.write('Added' + str(err.getChangedLine()) + '. line\n' + err.getBugFix() +'\n\n')
 	
 	report.close()
 

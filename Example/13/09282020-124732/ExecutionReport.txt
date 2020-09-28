@@ -1,0 +1,12 @@
+#####  Based on Valgrind output:  #####
+
+1 bytes in 1 blocks are definitely lost in loss record 1 of 3
+at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+by 0x10865B: main (13.c:5)
+
+#####  Koronka made following changes in 13.c  #####
+
+Added5. line
+	free(p);
+
+

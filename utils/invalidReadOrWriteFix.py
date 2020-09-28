@@ -14,6 +14,15 @@ def invalidReadOrWriteFix(err, history):
 	bytesBefore = ''
 	changeLeft = ''
 	
+
+	for elem in err.getProblemLines():
+		if re.findall('[malloc|calloc|realloc].+;', data[elem-1]):
+			lineToChange = data[elem-1]
+			err.setChangedLine(elem)
+			elemSize = int(re.findall('\d+', err.getErrorType())[0])
+			break
+
+
 	lineToChange = data[err.getProblemLines()[0]-1]
 	err.setChangedLine(err.getProblemLines()[0])
 	elemSize = int(re.findall('\d+', err.getErrorType())[0])

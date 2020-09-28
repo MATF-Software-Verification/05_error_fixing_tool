@@ -7,6 +7,8 @@ def negativeAllocFix(err, history):
 		
 	problemLineNum = err.getProblemLines()[len(err.getProblemLines())-1] - 1
 	problemLine = data[problemLineNum]
+	
+	
 
 	if problemLine.find('malloc') >= 0:
 		expStart = problemLine.find('malloc(') + 7
@@ -23,6 +25,10 @@ def negativeAllocFix(err, history):
 		
 	data[problemLineNum] = fixLine
 	
+	
+	err.setChangedLine(problemLineNum)
+	err.setBug(problemLine)
+	err.setBugFix(fixLine)
 	
 	history.append(problemLine.strip())
 		
