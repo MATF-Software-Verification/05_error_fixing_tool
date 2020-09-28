@@ -20,7 +20,6 @@ def noFreeFix(err, history):
 		var = var[star : ]
 			
 		
-				
 		malloc_var = []
 		for i in range(len(data)):
 			if data[i].find(var + ' = ' + 'malloc')>=0:
