@@ -25,6 +25,14 @@ Alat se pokrece komandom
 
 Alat ce u okviru direktorijuma u kom se nalazi kreirati folder po modelu datumPokretanja-VremePokretanja, u njega kopirati gore navedeni fajl kao argument nad kojim ce vrsiti ispravku, njih menjati, i na kraju generisati ExecutionReport sa izvestajem sta je i na koji nacin promenjeno. Na taj nacin originalni fajl ostaje nepromenjen, a rezultat rada alata i izmenjeni fajl se nalazi u pomenutom folderu. 
 
+### Problemi koje alat rešava
+Alat je u stanju da ispravi naredne greške:
+- korišćenje nedefinisanih vrednosti i vrednosti koje nisu inicijalizovane
+- prekoračenja i potkoračenja prilikom čitanja ili pisanja u dinamički alociranu memoriju
+- prosleđivanje negativnih  vrednosti za veličinu memorijskog prostora funkcijama za alokaciju memorije (podržane su funkcije malloc i realloc, funkcija calloc nije podržana jer daje drugačiji tip greške)
+- višestruko oslobađanje memorije
+- oslobađa neoslobođenu memoriju alociranu funkcijama malloc, realloc i calloc
+
 ### Studenti koji rade na projektu
 
 - [Lazar Mladenovic](https://github.com/LMladenovic)
