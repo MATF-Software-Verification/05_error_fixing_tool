@@ -33,6 +33,13 @@ Alat je u stanju da ispravi naredne greške:
 - višestruko oslobađanje memorije
 - oslobađa neoslobođenu memoriju alociranu funkcijama malloc, realloc i calloc
 
+### Predlozi za dalji razvoj
+- obrada prekoračenja i potkoračenja prilikom čitanja ili pisanja u statički alociranu memoriju
+- prosleđivanje negativnih vrednosti calloc funkciji
+- oslobađanje matrica
+- poklapanje argumenata src i dest funkcije memcpy i njoj sličnim
+- gubitak pokazivača na alociran prostor
+
 ### Studenti koji rade na projektu
 
 - [Lazar Mladenovic](https://github.com/LMladenovic)
